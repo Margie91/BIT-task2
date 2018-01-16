@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Reports from './Reports';
+import ReportsPage from './ReportsPage';
 
 class MainPage extends React.Component {
     render() {
         return (
             <Switch>
                 <Redirect exact from='/' to='/reports' />
-                <Route exact path='/reports' component={Reports} />
+                <Route exact path='/reports' component={ReportsPage} />
             </Switch>
         )
     }
