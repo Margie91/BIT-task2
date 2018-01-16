@@ -8,14 +8,17 @@ class Reports extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { reports: [] };
+        this.state = {
+                reports: [],
+                allReports: []  };
     }
 
     loadData = () => {
         dataService.getReports((reports) => {
             console.log(reports);
             this.setState({
-                reports
+                reports,
+                allReports: reports
             });
         });
 
@@ -31,7 +34,9 @@ class Reports extends React.Component {
 
         return (
             <div className="row">
+                <div className="col-12">
                     <Search />
+                </div>
                 <div className="col-12">
                     {reports.map((report) => <ReportComponent report={report} key={report.id} />)}
                 </div>

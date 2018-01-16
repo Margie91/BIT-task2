@@ -1,4 +1,4 @@
-import { BASE_URL } from '../constants';
+import { BASE_URL } from '../assets/constants';
 import axios from "axios";
 
 class CommunicationService {
