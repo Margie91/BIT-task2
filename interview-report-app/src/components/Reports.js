@@ -26,11 +26,14 @@ class Reports extends React.Component {
     }
 
     render() {
+
+        const reports = this.state.reports;
+
         return (
             <div className="row">
                     <Search />
                 <div className="col-12">
-                    <ReportComponent reports={this.state.reports} />
+                    {reports.map((report) => <ReportComponent report={report} key={report.id} />)}
                 </div>
             </div>
         )
