@@ -36,6 +36,14 @@ class DataService {
             });
     }
 
+    deletePost(id, successHandler) {
+        communicationService.deleteRequest(`/reports/${id}`, (response) => {
+            successHandler(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
+
 }
 
 export const dataService = new DataService();

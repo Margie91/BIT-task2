@@ -11,6 +11,16 @@ class CommunicationService {
             .catch((error) => errorHandler(error));
     }
 
+
+    deleteRequest(url, deleteHandler, errorHandler) {
+
+        const requestUrl = `${BASE_URL}${url}`;
+
+        axios.delete(requestUrl)
+            .then(response => deleteHandler(response))
+            .catch(error => errorHandler(error));
+    }
+
 }
 
 export const communicationService = new CommunicationService();

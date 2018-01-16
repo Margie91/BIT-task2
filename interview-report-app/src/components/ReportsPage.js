@@ -12,7 +12,7 @@ class ReportsPage extends React.Component {
         this.state = {
             reports: [],
             allReports: [],
-            modalReport: []
+            modalReport: {}
         };
     }
 
@@ -28,16 +28,36 @@ class ReportsPage extends React.Component {
 
     filterReports = (id) => {
         let reports = this.state.reports;
-        let modalReport = reports.filter((report) => {
-            return report.id == id;
-        });   
-
-        console.log(modalReport);
-
+        let modalReport;
+        reports.forEach(reportItem => {
+            if (reportItem.id === parseFloat(id)) {
+                modalReport = reportItem;
+            }
+        })
         this.setState({
             modalReport
         })
-    
+    }
+
+    searchReports = (searchTerm) => {
+        const currentReports = this.state.allReports;
+
+        if (searchTerm === "") {
+            this.setState({
+                reports: currentReports
+            });
+        }
+
+        const filteredReports = currentReports.filter((report) => {
+            return report.candidateName.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+        this.setState({
+            reports: filteredReports
+
+        });
+
+        console.log("filteredReports", this.state.reports);
     }
 
     componentWillMount() {
@@ -54,12 +74,12 @@ class ReportsPage extends React.Component {
         return (
             <div className="row">
                 <div className="col-12">
-                    <Search />
+                    <Search searchReports={this.searchReports} />
                 </div>
                 <div className="col-12">
-                    {reports.map((report) => <ReportComponent filterReports={this.filterReports} report={report} key={report.id} />)}
+                    {reports.length <= 0 ? <h1 className="noMatch">Sorry, no matches!</h1> : reports.map((report) => <ReportComponent filterReports={this.filterReports} report={report} key={report.id} />)}
                 </div>
-                <Modal report={modalReport} />
+                <Modal modalReport={this.state.modalReport} />
             </div>
         )
     }

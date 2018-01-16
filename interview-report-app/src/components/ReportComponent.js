@@ -2,8 +2,8 @@ import React from 'react';
 import { formatDate } from '../assets/helpers';
 import { capitalizeFirstLetter } from '../assets/helpers';
 
-import seeMore from '../assets/eye_icon.png';
-import deleteIcon from '../assets/delete.png';
+import seeMore from '../assets/images/eye_icon.png';
+import deleteIcon from '../assets/images/delete.png';
 
 class ReportComponent extends React.Component {
     constructor(props) {
