@@ -3,10 +3,7 @@ import React from 'react';
 import CandidateComponent from './CandidateComponent';
 
 class SelectCandidate extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
+ 
 
     handleCandidate = (candidate) => {
         this.props.selectCandidate(candidate);
@@ -17,7 +14,7 @@ class SelectCandidate extends React.Component {
 
         let candidates = this.props.candidates;
         return (
-            <div className="row">
+            <div className="container">
                 {candidates.map((candidate) => <CandidateComponent candidate={candidate}
                 key={candidate.id} getCandidate={this.handleCandidate} />)}
             </div>

@@ -318,13 +318,12 @@ hr {
 /*CANDIDATES*/
 
 .candidateCard {
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin-bottom: 15px;
   background-color: white;
   padding: 10px;
   box-shadow: 0px 2px 10px #c2c2c2;
-  transition: all 0.3s ease-in-out;
-  transform: scale(0.95);
+  transition: all 0.4s ease-in-out;
+  transform: scale(1);
   border: none;
   border-color: transparent;
   text-align: center;
@@ -332,7 +331,7 @@ hr {
 }
 
 .candidateCard:hover {
-  transform: scale(0.98);
+  transform: scale(1.02);
   border: 1px solid #eba421;
   cursor: pointer;
 }
@@ -340,6 +339,10 @@ hr {
 .candidateCard p {
   margin: 0;
   color: #a3a3a3;
+}
+
+.candidateCard h4 {
+  margin-top: 10px;
 }
 
 .cand-data {
@@ -352,10 +355,48 @@ hr {
 .candidateCard img {
   width: 100px;
   border-radius: 50%;
+  margin: 0 auto;
+  display: block;
 }
 
 @media screen and (min-width:992px) {
   .candidateCard {
     text-align: left;
+  }
+
+  .candidateCard h4 {
+    margin-top: 0;
+  }
+}
+
+.visibility {
+  display: none;
+}
+
+.nextBtn {
+  width: 30%;
+  margin-bottom: 30px; 
+  border: none;
+  background-color: orange;
+  color: white;
+  padding: 10px 0;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+
+.nextBtn:hover {
+  background-color: rgb(238, 155, 0);
+  box-shadow: 0px 2px 5px gray;
+  cursor: pointer;
+} 
+
+.btnContainer {
+  text-align: center;
+}
+
+@media screen and (min-width:768px) {
+  .nextBtn {
+    width: 100%;
+    margin-bottom: 0;
   }
 }

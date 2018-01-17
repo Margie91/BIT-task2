@@ -62,10 +62,14 @@ class SubmitReportPage extends React.Component {
 
         let newReport = this.state.newReport;
 
+        let step = this.state.step;
+
         if (newReport.hasOwnProperty("name")) {
 
+            ++step
+
             this.setState({
-                step: ++this.state.step
+                step
             });
         }
 
@@ -96,27 +100,26 @@ class SubmitReportPage extends React.Component {
 
         const candidates = this.state.candidates;
 
+        const newReport = this.state.newReport;
+
         return (
             <div className="row">
                 <div className="col-lg-3 col-md-4 col-sm-12">
-                    <SideDetails step={this.state.step} />
+                    <SideDetails step={this.state.step} newReport={newReport} />
                 </div>
-                <div className="col-lg-7 col-md-6 col-sm-12 form">
+                <div className="col-lg-9 col-md-8 col-sm-12 form">
+                    <div className="row">
+                        <div className="col-lg-10 col-md-8 col-sm-12">
+                            <Search searchRequest={this.searchCandidates} />
+                        </div>
+                        <div className="col-lg-2 col-md-4 col-sm-12 btnContainer">
+                            <button type="button" className="nextBtn" onClick={this.nextStep}>Next</button>
+                        </div>
+                    </div>
+
                     <div className="row">
                         <div className="col-12">
-                            <div className="row">
-                                <div className="col-10">
-                                    <Search searchRequest={this.searchCandidates} />
-                                </div>
-                                <div className="col-2">
-                                    <button type="button" onClick={this.nextStep}>Next</button>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
-                                </div>
-                            </div>
+                            {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
                         </div>
                     </div>
                 </div>
