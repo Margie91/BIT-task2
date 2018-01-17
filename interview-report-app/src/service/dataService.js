@@ -1,5 +1,6 @@
 import { communicationService } from './communicationService';
 import ReportDTO from '../dto/reportDTO';
+import CandidateDTO from '../dto/candidateDTO';
 
 class DataService {
 
@@ -11,7 +12,7 @@ class DataService {
                 const reportData = data.data;
 
                 reportData.forEach(item => {
-                    
+
                     const id = item.id;
                     const candidateId = item.candidateId;
                     const candidateName = item.candidateName;
@@ -21,7 +22,7 @@ class DataService {
                     const phase = item.phase;
                     const status = item.status;
                     const note = item.note;
-    
+
                     const report = new ReportDTO(id, candidateId, candidateName, companyId,
                         companyName, interviewDate, phase, status, note);
 
@@ -30,6 +31,37 @@ class DataService {
                 });
 
                 dataHandler(reports);
+
+            }, (serverErrorObject) => {
+                console.log(serverErrorObject);
+            });
+    }
+
+
+    getCandidates(dataHandler) {
+        let candidates = [];
+        communicationService.getRequest("candidates",
+            (data) => {
+
+                const candidateData = data.data;
+
+                candidateData.forEach(item => {
+
+                    const id = item.id;
+                    const name = item.name;
+                    const birthday = item.birthday;
+                    const email = item.email;
+                    const education = item.education;
+                    const avatar = item.avatar;
+
+                    const candidate = new CandidateDTO(id, name, birthday, email,
+                        education, avatar);
+
+                    candidates.push(candidate);
+
+                });
+
+                dataHandler(candidates);
 
             }, (serverErrorObject) => {
                 console.log(serverErrorObject);
