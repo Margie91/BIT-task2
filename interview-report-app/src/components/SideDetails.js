@@ -1,17 +1,21 @@
 import React from 'react';
 
-class SideDetails extends React.Component {
-    render() {
+const SideDetails = (props) => {
+
+    const step = props.step;
+    
+    let active = "step-active";
+
         return (
             <aside>
                 <div className="row">
-                    <div className="col-12 steps">
+                    <div className={step === 1 ? `col-12 steps step-active` : "col-12 steps"}>
                         <h4><span>1</span>  Select Candidate</h4>
                     </div>
-                    <div className="col-12 steps">
+                    <div className={step === 2 ? `col-12 steps step-active` : "col-12 steps"}>
                         <h4><span>2</span>  Select Company</h4>
                     </div>
-                    <div className="col-12 steps">
+                    <div className={step === 3 ? `col-12 steps step-active` : "col-12 steps"}>
                         <h4><span>3</span>  Fill Report Details</h4>
                         <hr />
                     </div>
@@ -26,7 +30,6 @@ class SideDetails extends React.Component {
                 </div>
             </aside>
         );
-    }
 }
 
 export default SideDetails;

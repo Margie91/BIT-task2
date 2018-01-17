@@ -14,6 +14,7 @@ class SubmitReportPage extends React.Component {
         this.state = {
             candidates: [],
             allCandidates: [],
+            newReport: {},
             step: 1
         }
 
@@ -49,6 +50,28 @@ class SubmitReportPage extends React.Component {
         });
     }
 
+    selectCandidate = (candidate) => {
+        console.log(candidate);
+
+        this.setState({
+            newReport: candidate
+        });
+    }
+
+    nextStep = () => {
+
+        let newReport = this.state.newReport;
+
+        if (newReport.hasOwnProperty("name")) {
+
+            this.setState({
+                step: ++this.state.step
+            });
+        }
+
+
+    }
+
     componentWillMount() {
         this.loadCandidates();
     }
@@ -58,7 +81,8 @@ class SubmitReportPage extends React.Component {
         let currentStep;
         switch (this.state.step) {
             case 1:
-                currentStep = <SelectCandidate candidates={this.state.candidates} />
+                currentStep = <SelectCandidate candidates={this.state.candidates}
+                    selectCandidate={this.selectCandidate} />
                 break;
             case 2:
                 currentStep = <SelectCompany />
@@ -75,19 +99,22 @@ class SubmitReportPage extends React.Component {
         return (
             <div className="row">
                 <div className="col-lg-3 col-md-4 col-sm-12">
-                    <SideDetails />
+                    <SideDetails step={this.state.step} />
                 </div>
                 <div className="col-lg-7 col-md-6 col-sm-12 form">
                     <div className="row">
                         <div className="col-12">
                             <div className="row">
-                                <div className="col-12">
+                                <div className="col-10">
                                     <Search searchRequest={this.searchCandidates} />
+                                </div>
+                                <div className="col-2">
+                                    <button type="button" onClick={this.nextStep}>Next</button>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-12">
-                                {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep }
+                                    {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
                                 </div>
                             </div>
                         </div>

@@ -275,8 +275,8 @@ aside {
 }
 
 aside span {
-  border: 2px solid rgb(131, 131, 131);
-  padding: 5px 10px;
+  border: 3px solid rgb(228, 148, 1);
+  padding: 6px 10px;
   border-radius: 50%;
   font-size: 0.9em;
   margin-right: 10px;
@@ -285,10 +285,12 @@ aside span {
 aside h4 {
   margin-bottom: 30px;
   color: rgb(131, 131, 131);
+  font-size: 1.1em;
 }
 
-aside h4 {
-  font-size: 1.1em;
+.step-active h4{
+  color: black;
+  font-weight: bold;
 }
 
 @media screen and (min-width:1200px) {
@@ -316,7 +318,7 @@ hr {
 /*CANDIDATES*/
 
 .candidateCard {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   margin-left: 10px;
   background-color: white;
   padding: 10px;
@@ -325,16 +327,19 @@ hr {
   transform: scale(0.95);
   border: none;
   border-color: transparent;
+  text-align: center;
+  width: 100%;
 }
 
 .candidateCard:hover {
-  transform: scale(1);
+  transform: scale(0.98);
   border: 1px solid #eba421;
   cursor: pointer;
 }
 
 .candidateCard p {
   margin: 0;
+  color: #a3a3a3;
 }
 
 .cand-data {
@@ -347,4 +352,10 @@ hr {
 .candidateCard img {
   width: 100px;
   border-radius: 50%;
+}
+
+@media screen and (min-width:992px) {
+  .candidateCard {
+    text-align: left;
+  }
 }
