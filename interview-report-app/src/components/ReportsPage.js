@@ -49,15 +49,22 @@ class ReportsPage extends React.Component {
         }
 
         const filteredReports = currentReports.filter((report) => {
-            return report.candidateName.toLowerCase().includes(searchTerm.toLowerCase());
+            return report.candidateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            report.companyName.toLowerCase().includes(searchTerm.toLowerCase());
         });
 
         this.setState({
             reports: filteredReports
 
         });
+    }
 
-        console.log("filteredReports", this.state.reports);
+    deleteReport = (id) => {
+        if(window.confirm("Are you sure?")) {
+            dataService.deleteRequest(id, (response) => {
+                this.loadData();
+            });
+        }
     }
 
     componentWillMount() {
@@ -69,7 +76,6 @@ class ReportsPage extends React.Component {
         const reports = this.state.reports;
 
         const modalReport = this.state.modalReport;
-        console.log("render", modalReport);
 
         return (
             <div className="row">
@@ -77,9 +83,10 @@ class ReportsPage extends React.Component {
                     <Search searchReports={this.searchReports} />
                 </div>
                 <div className="col-12">
-                    {reports.length <= 0 ? <h1 className="noMatch">Sorry, no matches!</h1> : reports.map((report) => <ReportComponent filterReports={this.filterReports} report={report} key={report.id} />)}
+                    {reports.length <= 0 ? <h1 className="noMatch">Sorry, no matches!</h1> : reports.map((report) => <ReportComponent
+                    filterReports={this.filterReports} report={report} key={report.id} deleteReport={this.deleteReport} />)}
                 </div>
-                <Modal modalReport={this.state.modalReport} />
+                <Modal modalReport={modalReport} />
             </div>
         )
     }

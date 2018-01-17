@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://fonts.googleapis.com/css?family=Raleway");
-
+@import url("https://fonts.googleapis.com/css?family=Roboto|Raleway");
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #f7f7f7;
@@ -51,6 +49,8 @@ nav .navButtons a.navbar-brand {
   text-shadow: none;
   margin-bottom: 20px;
   margin-top: 10px;
+  background-color: transparent;
+  outline: none;
 }
 
 @media screen and(max-width:700px) {
@@ -71,6 +71,7 @@ nav .navButtons a.navbar-brand.active {
   color: white;
   background-color: #f8a100;
   border-color: #f8a100;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.8);
 }
 
 .navButtons a.navbar-brand.mb-0:first-child {
@@ -193,41 +194,8 @@ h2 {
 }
 
 .noMatch {
-  font-size: 2.5em;
+  font-size: 2em;
   color: rgb(236, 154, 2);
-}
-
-footer {
-  background-color: #d3d8d4;
-  box-shadow: 0 -2px 7px #acabab;
-  text-align: center;
-  vertical-align: middle;
-  height: 70px;
-  margin-top: 30px;
-}
-
-footer p {
-  line-height: 70px;
-  color: black;
-  margin: 0;
-}
-
-
-.row .noReport {
-  font-size: 1.6em;
-  color: #32746D;
-}
-
-@media screen and (min-width: 992px) {
-  #reportModal .modal-dialog {
-    max-width: 60%;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  #reportModal .modal-content {
-    width: 100%;
-  }
 }
 
 #reportModal .close {
@@ -248,4 +216,101 @@ footer p {
 #reportModal .notes p:last-child {
   color: black;
   font-size: 1.2em;
+}
+
+@media screen and (min-width: 992px) {
+  #reportModal .modal-dialog {
+    max-width: 60%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #reportModal .modal-content {
+    width: 100%;
+  }
+}
+
+footer {
+  background-color: #d3d8d4;
+  box-shadow: 0 -2px 7px #acabab;
+  text-align: center;
+  vertical-align: middle;
+  height: 70px;
+  margin-top: 30px;
+}
+
+footer p {
+  line-height: 70px;
+  color: black;
+  margin: 0;
+}
+
+.row .noReport {
+  font-size: 1.6em;
+  color: #32746D;
+}
+
+/* SUBMIT REPORT PAGE */
+
+aside {
+  border-right: none;
+  height: 100%;
+  text-align: center;
+}
+
+@media screen and (min-width:766px) {
+  aside {
+    text-align: left;
+  }
+}
+
+
+@media screen and (min-width:767px) {
+  aside {
+    border-right: 2px solid rgb(109, 109, 109);
+  }
+}
+
+.info h4 {
+  color: black;
+}
+
+aside span {
+  border: 2px solid rgb(131, 131, 131);
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 0.9em;
+  margin-right: 10px;
+}
+
+aside h4 {
+  margin-bottom: 30px;
+  color: rgb(131, 131, 131);
+}
+
+aside h4 {
+  font-size: 1.1em;
+}
+
+@media screen and (min-width:992px) {
+  aside h4 {
+    font-size: 1.4em;
+  }
+
+  aside span {
+    padding: 5px 13px;
+  }
+}
+
+hr {
+  width: 80%;
+  height: 5px;
+  border-color: rgb(153, 153, 153);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.fom {
+  background-color: orange;
+  height: 100px;
 }

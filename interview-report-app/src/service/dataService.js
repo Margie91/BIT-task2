@@ -36,7 +36,7 @@ class DataService {
             });
     }
 
-    deletePost(id, successHandler) {
+    deleteRequest(id, successHandler) {
         communicationService.deleteRequest(`/reports/${id}`, (response) => {
             successHandler(response);
         }, (error) => {

@@ -17,6 +17,11 @@ class ReportComponent extends React.Component {
         console.log(id);
         this.props.filterReports(id);
     }
+
+    deleteRequest = () => {
+        const id = this.props.report.id;
+            this.props.deleteReport(id);
+    }
     
     
     render() {
@@ -42,7 +47,8 @@ class ReportComponent extends React.Component {
                 <p>Status</p>
                 </div>
                 <div className="col-lg-2 col-md-2 col-sm-12 seeMore">
-                <img src={seeMore} onClick={this.handleModalClick} data-toggle="modal" data-target="#reportModal" data-reportid={id} alt="seeMore" /> <img className="deleteBtn" alt="delete" src={deleteIcon}/>
+                <img src={seeMore} onClick={this.handleModalClick} data-toggle="modal" data-target="#reportModal" data-reportid={id} alt="seeMore" /> <img className="deleteBtn" alt="delete"
+                onClick={this.deleteRequest} src={deleteIcon}/>
                 </div>
             </div>   
         )
