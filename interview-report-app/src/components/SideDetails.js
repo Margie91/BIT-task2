@@ -4,7 +4,7 @@ const SideDetails = (props) => {
 
     const step = props.step;
 
-    const { name } = props.newReport;
+    const { candidateName } = props.newReport;
     
     let active = "step-active";
 
@@ -23,9 +23,9 @@ const SideDetails = (props) => {
                         <h4><span>3</span>  Fill Report Details</h4>
                         <hr />
                     </div>
-                    <div className={!name ? `col-12 info ${visibility}` : "col-12 info"}>
+                    <div className={!candidateName ? `col-12 info ${visibility}` : "col-12 info"}>
                         <p>Candidate:</p>
-                        <h4>{name}</h4>
+                        <h4>{candidateName}</h4>
                     </div>
                     <div className="col-12 info">
                         <p>Company:</p>

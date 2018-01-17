@@ -10,8 +10,8 @@ class CandidateComponent extends React.Component {
         const candidateName = event.target.dataset.name;
         const candidateId = event.target.dataset.id;
         const selectededCandidate = {
-            "name": candidateName,
-            "id": candidateId
+            "candidateName": candidateName,
+            "candidateId": candidateId
         }
 
         this.props.getCandidate(selectededCandidate);

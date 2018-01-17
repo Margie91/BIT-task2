@@ -1,9 +1,16 @@
 import React from 'react';
+import CompanyComponent from './CompanyComponent';
 
 class SelectCompany extends React.Component {
-    render () {
+    render() {
+
+
+            let companies = this.props.companies;
         return (
-            <h4>Select Company</h4>
+            <div className="container">
+                {companies.map((company) => <CompanyComponent company={company}
+                    key={company.id} />)}
+            </div>
         )
     }
 }

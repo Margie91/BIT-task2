@@ -1,6 +1,8 @@
 import { communicationService } from './communicationService';
+
 import ReportDTO from '../dto/reportDTO';
 import CandidateDTO from '../dto/candidateDTO';
+import CompanyDTO from '../dto/companyDTO';
 
 class DataService {
 
@@ -62,6 +64,32 @@ class DataService {
                 });
 
                 dataHandler(candidates);
+
+            }, (serverErrorObject) => {
+                console.log(serverErrorObject);
+            });
+    }
+
+    getCompanies(dataHandler) {
+        let companies = [];
+        communicationService.getRequest("companies",
+            (data) => {
+
+                const companyData = data.data;
+
+                companyData.forEach(item => {
+
+                    const id = item.id;
+                    const name = item.name;
+                    const email = item.email;
+
+                    const company = new CompanyDTO(id, name, email);
+
+                    companies.push(company);
+
+                });
+
+                dataHandler(companies);
 
             }, (serverErrorObject) => {
                 console.log(serverErrorObject);

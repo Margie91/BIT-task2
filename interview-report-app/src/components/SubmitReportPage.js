@@ -14,6 +14,7 @@ class SubmitReportPage extends React.Component {
         this.state = {
             candidates: [],
             allCandidates: [],
+            companies: [],
             newReport: {},
             step: 1
         }
@@ -21,13 +22,19 @@ class SubmitReportPage extends React.Component {
 
     }
 
-    loadCandidates = () => {
+    loadData = () => {
         dataService.getCandidates((candidates) => {
             this.setState({
                 candidates,
                 allCandidates: candidates
-            })
-        })
+            });
+        });
+
+        dataService.getCompanies((companies) => {
+            this.setState({
+                companies
+            });
+        });
     }
 
 
@@ -64,7 +71,7 @@ class SubmitReportPage extends React.Component {
 
         let step = this.state.step;
 
-        if (newReport.hasOwnProperty("name")) {
+        if (newReport.hasOwnProperty("candidateName")) {
 
             ++step
 
@@ -77,10 +84,12 @@ class SubmitReportPage extends React.Component {
     }
 
     componentWillMount() {
-        this.loadCandidates();
+        this.loadData();
     }
 
     render() {
+
+        const companies = this.state.companies;
 
         let currentStep;
         switch (this.state.step) {
@@ -89,7 +98,7 @@ class SubmitReportPage extends React.Component {
                     selectCandidate={this.selectCandidate} />
                 break;
             case 2:
-                currentStep = <SelectCompany />
+                currentStep = <SelectCompany companies={companies} />
                 break;
             case 3:
                 currentStep = <FillReport />
