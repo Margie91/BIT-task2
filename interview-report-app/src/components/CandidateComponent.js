@@ -30,12 +30,12 @@ class CandidateComponent extends React.Component {
 
         return (
             <div className="row" onClick={this.selectCandidate} data-id={id} data-name={name} >
-                <div className="col-12 candidateCard" onClick={this.selectCandidate} data-id={id} data-name={name}>
+                <div className="col-12 infoCard" onClick={this.selectCandidate} data-id={id} data-name={name}>
                     <div className="row">
                         <div className="col-lg-3 col-md-12 col-sm-12" onClick={this.selectCandidate} data-id={id} data-name={name}>
                             <img src={avatar} alt="avatar" onClick={this.selectCandidate} data-id={id} data-name={name} />
                         </div>
-                        <div className="col-lg-9 col-md-12 col-sm-12 cand-data" onClick={this.selectCandidate} data-id={id} data-name={name}>
+                        <div className="col-lg-9 col-md-12 col-sm-12 info-data" onClick={this.selectCandidate} data-id={id} data-name={name}>
                             <h4 onClick={this.selectCandidate} data-id={id} data-name={name}>{name}</h4>
                             <p onClick={this.selectCandidate} data-id={id} data-name={name}>{email}</p>
                         </div>

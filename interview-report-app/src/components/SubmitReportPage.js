@@ -15,6 +15,7 @@ class SubmitReportPage extends React.Component {
             candidates: [],
             allCandidates: [],
             companies: [],
+            allCompanies: [],
             newReport: {},
             step: 1
         }
@@ -32,7 +33,8 @@ class SubmitReportPage extends React.Component {
 
         dataService.getCompanies((companies) => {
             this.setState({
-                companies
+                companies,
+                allCompanies: companies 
             });
         });
     }
@@ -40,21 +42,38 @@ class SubmitReportPage extends React.Component {
 
     searchCandidates = (searchTerm) => {
         const currentCandidates = this.state.allCandidates;
+        const currentCompanies = this.state.allCompanies;
 
         if (searchTerm === "") {
             this.setState({
-                reports: currentCandidates
+                reports: currentCandidates,
+                companies: currentCompanies
             });
         }
 
-        const filteredCandidates = currentCandidates.filter((candidate) => {
-            return candidate.name.toLowerCase().includes(searchTerm.toLowerCase());
-        });
+        if(this.state.step === 1) {
 
-        this.setState({
-            candidates: filteredCandidates
+            const filteredCandidates = currentCandidates.filter((candidate) => {
+                return candidate.name.toLowerCase().includes(searchTerm.toLowerCase());
+            });
 
-        });
+            this.setState({
+                candidates: filteredCandidates
+            });
+
+        }
+
+        if(this.state.step === 2) {
+
+            const filteredCompanies = currentCompanies.filter((company) => {
+                return company.name.toLowerCase().includes(searchTerm.toLowerCase())
+            });
+
+            this.setState({
+                companies: filteredCompanies
+            });
+        }
+
     }
 
     selectCandidate = (candidate) => {
@@ -65,13 +84,23 @@ class SubmitReportPage extends React.Component {
         });
     }
 
+    selectCompany = (company) => {
+        const newReport = this.state.newReport;
+        newReport.companyId = company.companyId;
+        newReport.companyName = company.companyName;
+
+        this.setState({
+            newReport
+        });
+    }
+
     nextStep = () => {
 
         let newReport = this.state.newReport;
 
         let step = this.state.step;
 
-        if (newReport.hasOwnProperty("candidateName")) {
+        if (newReport.hasOwnProperty("candidateName") || newReport.hasOwnProperty("companyName")) {
 
             ++step
 
@@ -91,6 +120,10 @@ class SubmitReportPage extends React.Component {
 
         const companies = this.state.companies;
 
+        const candidates = this.state.candidates;
+
+        const newReport = this.state.newReport;
+
         let currentStep;
         switch (this.state.step) {
             case 1:
@@ -98,7 +131,7 @@ class SubmitReportPage extends React.Component {
                     selectCandidate={this.selectCandidate} />
                 break;
             case 2:
-                currentStep = <SelectCompany companies={companies} />
+                currentStep = <SelectCompany companies={companies} selectCompany={this.selectCompany} />
                 break;
             case 3:
                 currentStep = <FillReport />
@@ -106,10 +139,7 @@ class SubmitReportPage extends React.Component {
             default:
                 break;
         }
-
-        const candidates = this.state.candidates;
-
-        const newReport = this.state.newReport;
+      
 
         return (
             <div className="row">

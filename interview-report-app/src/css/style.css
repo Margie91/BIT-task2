@@ -310,18 +310,14 @@ hr {
   margin-bottom: 50px;
 }
 
-.fom {
-  background-color: orange;
-  height: 100px;
-}
 
 /*CANDIDATES*/
 
-.candidateCard {
-  margin-bottom: 20px;
+.infoCard {
+  margin-bottom: 15px;
   background-color: white;
   padding: 10px;
-  box-shadow: 0px 2px 10px #c2c2c2;
+  box-shadow: 0px 2px 7px #c2c2c2;
   transition: all 0.4s ease-in-out;
   transform: scale(1);
   border: none;
@@ -330,29 +326,30 @@ hr {
   width: 100%;
 }
 
-.candidateCard:hover {
+.infoCard:hover {
   transform: scale(1.02);
   border: 1px solid #eba421;
   cursor: pointer;
 }
 
-.candidateCard p {
-  margin: 0;
+.infoCard p {
+  margin-top: 10px;
+  margin-bottom: 0;
   color: #a3a3a3;
 }
 
-.candidateCard h4 {
-  margin-top: 10px;
+.infoCard h4 {
+  margin:0;
 }
 
-.cand-data {
+.info-data {
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
 }
 
-.candidateCard img {
+.infoCard img {
   width: 100px;
   border-radius: 50%;
   margin: 0 auto;
@@ -360,11 +357,11 @@ hr {
 }
 
 @media screen and (min-width:992px) {
-  .candidateCard {
+  .infoCard {
     text-align: left;
   }
 
-  .candidateCard h4 {
+  .infoCard h4 {
     margin-top: 0;
   }
 }
