@@ -5,7 +5,7 @@ body {
 }
 
 #wrapper {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 140px);
   box-sizing: border-box;
 }
 
@@ -102,6 +102,8 @@ nav .navButtons a.navbar-brand.active {
 .reportCard h5 {
   margin: 0;
   color: black;
+  font-size: 1.2em;
+  margin-bottom: 3px;
 }
 
 .reportCard p {
@@ -234,7 +236,7 @@ footer {
   box-shadow: 0 -2px 7px #acabab;
   text-align: center;
   vertical-align: middle;
-  height: 70px;
+  height: 100px;
   margin-top: 30px;
 }
 
@@ -242,6 +244,14 @@ footer p {
   line-height: 70px;
   color: black;
   margin: 0;
+}
+
+#copyright {
+  background-color: #bebebe; 
+  height: 40px;
+  padding-left: 10px;
+  text-align: left;
+  line-height: 40px;
 }
 
 .row .noReport {

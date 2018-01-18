@@ -36,6 +36,6 @@ export const getToday = () => {
         mm = '0' + mm
     }
     
-    return today = yyyy + '-' + mm + '-' + dd;
+    return today = `${yyyy}-${mm}-${dd}`;
 }
 

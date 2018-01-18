@@ -208,7 +208,7 @@ class SubmitReportPage extends React.Component {
 
                     <div className="row">
                         <div className="col-12">
-                            {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
+                            {!candidates.length || !companies.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
                         </div>
                     </div>
                 </div>
