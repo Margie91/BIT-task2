@@ -88,7 +88,7 @@ class ReportsPage extends React.Component {
                 </div>
                 <Modal modalReport={modalReport} />
             </div>
-        )
+        );
     }
 }
 

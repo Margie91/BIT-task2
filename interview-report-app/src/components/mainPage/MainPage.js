@@ -12,7 +12,7 @@ class MainPage extends React.Component {
                 <Route exact path='/reports' component={ReportsPage} />
                 <Route exact path='/submitreport' component={SubmitReportPage} />
             </Switch>
-        )
+        );
     }
 }
 

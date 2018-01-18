@@ -8,7 +8,7 @@ const Footer = () => {
                 &copy; 2018 by Margie91
             </div>
         </footer>
-    )
+    );
 }
 
 export default Footer;

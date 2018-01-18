@@ -23,7 +23,7 @@ class Search extends React.Component {
         return (
             <input className="search" type="text" placeholder="Search..."
             onChange={this.handleChange} value={this.state.searchTerm}/>
-        )
+        );
     }
 }
 
