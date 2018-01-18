@@ -78,7 +78,6 @@ class SubmitReportPage extends React.Component {
     }
 
     selectCandidate = (candidate) => {
-        console.log(candidate);
 
         this.setState({
             newReport: candidate,
@@ -108,6 +107,19 @@ class SubmitReportPage extends React.Component {
                 isSelected: false
             });
         }
+
+        if (step === 3) {
+            let newReport = this.state.newReport;
+            if (newReport.hasOwnProperty("note")) {
+                this.submitReport(newReport);
+            }
+        }
+    }
+
+    submitReport = (newReport) => {
+        dataService.submitReport(newReport, (response) => {
+            console.log(response);
+        })
     }
 
     backStep = () => {
@@ -130,8 +142,8 @@ class SubmitReportPage extends React.Component {
                 newReport
             });
         }
-        
-        if (step === 2) {
+
+        if (step === 1 || 2) {
 
             newReport.companyName = "";
             newReport.companyId = "";
@@ -154,16 +166,20 @@ class SubmitReportPage extends React.Component {
 
         const newReport = this.state.newReport;
 
+        let search;
         let currentStep;
         switch (this.state.step) {
             case 1:
+                search = <Search searchRequest={this.searchCandidates} />
                 currentStep = <SelectCandidate candidates={this.state.candidates}
                     selectCandidate={this.selectCandidate} />
                 break;
             case 2:
+                search = <Search searchRequest={this.searchCandidates} />
                 currentStep = <SelectCompany companies={companies} selectCompany={this.selectCompany} />
                 break;
             case 3:
+                search = "";
                 currentStep = <FillReport />
                 break;
             default:
@@ -179,12 +195,13 @@ class SubmitReportPage extends React.Component {
                 <div className="col-lg-9 col-md-8 col-sm-12 form">
                     <div className="row">
                         <div className="col-lg-9 col-md-8 col-sm-12">
-                            <Search searchRequest={this.searchCandidates} />
+                            {search}
                         </div>
                         <div className="col-lg-3 col-md-4 col-sm-12 btnContainer">
                             <button type="button" className={this.state.step === 1 ? "backBtn visibility" : "backBtn"}
                                 onClick={this.backStep}>Back</button>
-                            <button type="button" className="nextBtn" onClick={this.nextStep}>Next</button>
+                            <button type="button" className={this.state.step === 3 ? "nextBtn visibility" : "nextBtn"}
+                            onClick={this.nextStep}>Next</button>
                         </div>
                     </div>
 

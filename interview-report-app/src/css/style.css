@@ -86,7 +86,7 @@ nav .navButtons a.navbar-brand.active {
 
 .reportCard {
   margin-bottom: 20px;
-  box-shadow: 0px 2px 10px #c2c2c2;
+  box-shadow: 0px 2px 7px #c2c2c2;
   transform: scale(0.95);
   transition: all 0.3s ease-in-out;
   vertical-align: middle;
@@ -144,7 +144,6 @@ nav .navButtons a.navbar-brand.active {
 }
 
 .seeMore img {
-  display: inline;
   padding-right: 10px;
   border: none;
   width: 2.5rem;
@@ -162,7 +161,7 @@ nav .navButtons a.navbar-brand.active {
   width: 2.1rem;
 }
 
-input {
+.search {
   background-color: transparent;
   color: #afafaf;
   padding: 5px 5px 10px 35px;
@@ -178,12 +177,12 @@ input {
 }
 
 @media screen and (min-width: 992px) {
-  input {
+  .search {
     width: 50%;
   }
 }
 
-input:focus {
+.search:focus {
   outline: none;
   transform: scale(1);
   border-bottom: 2px solid orange;
@@ -258,6 +257,10 @@ aside {
   text-align: center;
 }
 
+aside p {
+  color: #949393;
+}
+
 @media screen and (min-width:766px) {
   aside {
     text-align: left;
@@ -288,7 +291,7 @@ aside h4 {
   font-size: 1.1em;
 }
 
-.step-active h4{
+.step-active h4 {
   color: black;
   font-weight: bold;
 }
@@ -309,7 +312,6 @@ hr {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-
 
 /*CANDIDATES*/
 
@@ -339,7 +341,8 @@ hr {
 }
 
 .infoCard h4 {
-  margin:0;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .info-data {
@@ -360,19 +363,18 @@ hr {
   .infoCard {
     text-align: left;
   }
-
   .infoCard h4 {
     margin-top: 0;
   }
 }
 
 .visibility {
-  visibility: hidden;
+  display: none;
 }
 
 .nextBtn {
   width: 30%;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
   border: none;
   background-color: orange;
   color: white;
@@ -385,7 +387,7 @@ hr {
   background-color: rgb(238, 155, 0);
   box-shadow: 0px 2px 5px gray;
   cursor: pointer;
-} 
+}
 
 .btnContainer {
   text-align: center;
@@ -393,7 +395,7 @@ hr {
 
 .backBtn {
   width: 30%;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
   border: none;
   background-color: #104f55;
   color: white;
@@ -406,12 +408,64 @@ hr {
   background-color: #0e4449;
   box-shadow: 0px 2px 5px gray;
   cursor: pointer;
-} 
+}
 
 @media screen and (min-width:768px) {
   .nextBtn, .backBtn {
     width: 50%;
     margin-bottom: 0;
   }
+}
 
+/*FILL REPORT*/
+
+.fillReport {
+  margin-top: 30px;
+}
+
+.fillReport input {
+  width: 100%;
+  border: 1px solid rgb(158, 158, 158);
+  border-radius: 3px;
+  height: 38px;
+  background-color: white;
+  border-color: #d0d3d6;
+  margin-bottom: 15px;
+}
+
+.fillReport select {
+  padding: 2px;
+}
+
+.fillReport p {
+  color: #949393;
+}
+
+.fillReport textarea {
+  width: 100%;
+  height: 15rem;
+  border-color: #d0d3d6;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width:992px) {
+  .fillReport input {
+    margin-bottom: 0;
+  }
+}
+
+.companies {
+  text-align: left;
+}
+
+.companies h4 {
+  color: #585858;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+#submitBtn {
+  width: 100px;
 }

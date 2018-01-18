@@ -10,12 +10,14 @@ class SelectCompany extends React.Component {
 
     render() {
 
-            let companies = this.props.companies;
+        let companies = this.props.companies;
 
         return (
             <div className="container">
-                {companies.map((company) => <CompanyComponent company={company}
-                    key={company.id} getCompany={this.handleCompany} />)}
+                <div className="row">
+                    {companies.map((company) => <CompanyComponent company={company}
+                        key={company.id} getCompany={this.handleCompany} />)}
+                </div>
             </div>
         )
     }

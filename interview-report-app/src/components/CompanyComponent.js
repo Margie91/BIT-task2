@@ -1,7 +1,7 @@
 import React from 'react';
 
 class CompanyComponent extends React.Component {
-  
+
 
     selectCompany = (event) => {
         event.stopPropagation();
@@ -12,8 +12,6 @@ class CompanyComponent extends React.Component {
             "companyName": companyName,
             "companyId": companyId
         }
-
-        console.log(selectededCompany);
 
         this.props.getCompany(selectededCompany);
 
@@ -26,13 +24,10 @@ class CompanyComponent extends React.Component {
 
 
         return (
-            <div className="row" onClick={this.selectCompany} data-id={id} data-name={name} >
-                <div className="col-12 infoCard" onClick={this.selectCompany} data-id={id} data-name={name}>
-                    <div className="row">
-                        <div className="col-lg-9 col-md-12 col-sm-12 info-data" onClick={this.selectCompany} data-id={id} data-name={name}>
-                            <h4 onClick={this.selectCompany} data-id={id} data-name={name}>{name}</h4>
-                        </div>
-                    </div>
+
+            <div className="col-lg-6 col-md-12 col-sm-12" onClick={this.selectCompany} data-id={id} data-name={name}>
+                <div className="info-data infoCard companies">
+                    <h4 onClick={this.selectCompany} data-id={id} data-name={name}>{name}</h4>
                 </div>
             </div>
         );

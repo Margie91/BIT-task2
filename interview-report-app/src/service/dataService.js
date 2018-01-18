@@ -104,6 +104,15 @@ class DataService {
         });
     }
 
+    submitReport(data, successHandler) {
+        communicationService.postRequest("reports", data,
+            (serverResponseData) => {
+                successHandler(serverResponseData);
+            }, (serverErrorObject) => {
+                console.log(serverErrorObject);
+            });
+    }
+
 }
 
 export const dataService = new DataService();
