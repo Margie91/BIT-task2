@@ -1,7 +1,7 @@
 
 class ValidationService {
 
-    isReportFormValid = (data, errorHandler) => {
+    isReportFormValid (data, errorHandler){
         let errors = {};
 
         if (!this.hasAllRequiredFields(data)) {
@@ -9,12 +9,13 @@ class ValidationService {
             errorHandler(errors);
             return false;
         }
+
         return true;
     }
 
-    hasAllRequiredFields = (data) => {
-        for (let value in data) {
-            if (value === "") {
+    hasAllRequiredFields(data){
+        for (let key in data) {
+            if (data[key] === "") {
                 return false;
             }
         }

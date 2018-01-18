@@ -49,7 +49,8 @@ class CandidateComponent extends React.Component {
 }
 
 CandidateComponent.propTypes = {
-    candidate: PropTypes.object
+    candidate: PropTypes.object,
+    getCandidate: PropTypes.func
 };
 
 export default CandidateComponent;

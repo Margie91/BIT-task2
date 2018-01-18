@@ -26,7 +26,8 @@ class SelectCompany extends React.Component {
 }
 
 SelectCompany.propTypes = {
-    companies: PropTypes.array
+    companies: PropTypes.array,
+    selectCompany: PropTypes.func
 };
 
 export default SelectCompany;

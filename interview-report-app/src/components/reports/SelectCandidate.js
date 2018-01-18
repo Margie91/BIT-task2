@@ -25,7 +25,8 @@ class SelectCandidate extends React.Component {
 }
 
 SelectCandidate.propTypes = {
-    candidates: PropTypes.array
+    candidates: PropTypes.array,
+    selectCandidate: PropTypes.func
 };
 
 export default SelectCandidate;

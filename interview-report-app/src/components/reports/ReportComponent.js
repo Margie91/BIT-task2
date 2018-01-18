@@ -57,7 +57,10 @@ class ReportComponent extends React.Component {
 }
 
 ReportComponent.propTypes = {
-    report: PropTypes.object
+    report: PropTypes.object,
+    filterReports: PropTypes.func,
+    deleteReport: PropTypes.func
+
 };
 
 export default ReportComponent;

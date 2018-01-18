@@ -12,7 +12,8 @@ class FillReport extends React.Component {
             interviewDate: "",
             phase: "",
             status: "",
-            note: ""
+            note: "",
+            error: {}
         }
     }
 
@@ -29,15 +30,24 @@ class FillReport extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
 
-        const newReport = { ...this.state }
-        validation.isReportFormValid(newReport, (error) => {
-            console.log(error);
-        })
-
-        const date = new Date(this.state.interviewDate);
+        const newReport = {
+            interviewDate: this.state.interviewDate,
+            phase: this.state.phase,
+            status: this.state.status,
+            note: this.state.note
+        };
+        const date = new Date(newReport.interviewDate);
         newReport.interviewDate = date + "";
 
-        this.props.forwardReport(newReport);
+        if (validation.isReportFormValid(newReport, (error) => {
+            this.setState({
+                error
+            });
+        })) {
+            this.props.forwardReport(newReport);
+        }
+
+
 
     }
 
@@ -49,7 +59,7 @@ class FillReport extends React.Component {
             <form className="row fillReport" onSubmit={this.submitHandler}>
                 <div className="col-lg-4 col-sm-12">
                     <input type="datetime-local" min="2015-04-12T23:20" max={`${today}T16:00`} name="interviewDate"
-                    value={this.state.interviewDate} onChange={this.handleChange} placeholder="Interview Date"  />
+                        value={this.state.interviewDate} onChange={this.handleChange} placeholder="Interview Date" />
                 </div>
                 <div className="col-lg-4 col-sm-12">
                     <div className="input-group mb-3">
@@ -57,7 +67,7 @@ class FillReport extends React.Component {
                             <label className="input-group-text" htmlFor="inputGroupSelect01">Phase</label>
                         </div>
                         <select className="custom-select" name="phase" value={this.state.phase}
-                        onChange={this.handleChange} id="inputGroupSelect01" >
+                            onChange={this.handleChange} id="inputGroupSelect01" >
                             <option defaultValue value="">Choose...</option>
                             <option value="cv">CV</option>
                             <option value="hr">HR</option>
@@ -72,7 +82,7 @@ class FillReport extends React.Component {
                             <label className="input-group-text" htmlFor="inputGroupSelect01">Status</label>
                         </div>
                         <select className="custom-select" name="status" value={this.state.status}
-                        onChange={this.handleChange} id="inputGroupSelect01" >
+                            onChange={this.handleChange} id="inputGroupSelect01" >
                             <option defaultValue value="">Choose...</option>
                             <option value="passed">Passed</option>
                             <option value="declined">Declined</option>
@@ -81,7 +91,8 @@ class FillReport extends React.Component {
                 </div>
                 <div className="col-12">
                     <textarea name="note" onChange={this.handleChange} value={this.state.note}
-                    placeholder="Note..." ></textarea>
+                        placeholder="Note..." ></textarea>
+                    <div className="text-danger">{this.state.error.allFields}</div>
                 </div>
                 <div className="col-12">
                     <button type="submit" id="submitBtn" className="nextBtn">Submit</button>

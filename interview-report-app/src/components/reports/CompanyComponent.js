@@ -36,7 +36,8 @@ class CompanyComponent extends React.Component {
 }
 
 CompanyComponent.propTypes = {
-    company: PropTypes.object
+    company: PropTypes.object,
+    getCompany: PropTypes.func
 };
 
 export default CompanyComponent;

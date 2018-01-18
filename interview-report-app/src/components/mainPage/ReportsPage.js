@@ -26,7 +26,7 @@ class ReportsPage extends React.Component {
 
     }
 
-    filterReports = (id) => {
+    filterReportsForModal = (id) => {
         let reports = this.state.reports;
         let modalReport;
         reports.forEach(reportItem => {
@@ -84,7 +84,7 @@ class ReportsPage extends React.Component {
                 </div>
                 <div className="col-12">
                     {reports.length <= 0 ? <h1 className="noMatch">Sorry, no matches!</h1> : reports.map((report) => <ReportComponent
-                    filterReports={this.filterReports} report={report} key={report.id} deleteReport={this.deleteReport} />)}
+                    filterReports={this.filterReportsForModal} report={report} key={report.id} deleteReport={this.deleteReport} />)}
                 </div>
                 <Modal modalReport={modalReport} />
             </div>
