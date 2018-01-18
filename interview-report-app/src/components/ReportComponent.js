@@ -14,7 +14,6 @@ class ReportComponent extends React.Component {
 
     handleModalClick = (event) => {
         const id = event.target.dataset.reportid;
-        console.log(id);
         this.props.filterReports(id);
     }
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { dataService } from '../service/dataService';
+import { redirect } from '../service/redirect';
 
 import SideDetails from './SideDetails';
 import Search from './common/Search';
 import SelectCandidate from './SelectCandidate';
 import SelectCompany from './SelectCompany';
 import FillReport from './FillReport';
+
 
 class SubmitReportPage extends React.Component {
     constructor(props) {
@@ -14,109 +16,199 @@ class SubmitReportPage extends React.Component {
         this.state = {
             candidates: [],
             allCandidates: [],
+            companies: [],
+            allCompanies: [],
             newReport: {},
+            isSelected: false,
             step: 1
         }
-
-
     }
 
-    loadCandidates = () => {
+    loadData = () => {
         dataService.getCandidates((candidates) => {
             this.setState({
                 candidates,
                 allCandidates: candidates
-            })
-        })
+            });
+        });
+
+        dataService.getCompanies((companies) => {
+            this.setState({
+                companies,
+                allCompanies: companies
+            });
+        });
     }
 
 
     searchCandidates = (searchTerm) => {
         const currentCandidates = this.state.allCandidates;
+        const currentCompanies = this.state.allCompanies;
 
         if (searchTerm === "") {
             this.setState({
-                reports: currentCandidates
+                reports: currentCandidates,
+                companies: currentCompanies
             });
         }
 
-        const filteredCandidates = currentCandidates.filter((candidate) => {
-            return candidate.name.toLowerCase().includes(searchTerm.toLowerCase());
-        });
+        if (this.state.step === 1) {
 
-        this.setState({
-            candidates: filteredCandidates
+            const filteredCandidates = currentCandidates.filter((candidate) => {
+                return candidate.name.toLowerCase().includes(searchTerm.toLowerCase());
+            });
 
-        });
+            this.setState({
+                candidates: filteredCandidates
+            });
+
+        }
+
+        if (this.state.step === 2) {
+
+            const filteredCompanies = currentCompanies.filter((company) => {
+                return company.name.toLowerCase().includes(searchTerm.toLowerCase())
+            });
+
+            this.setState({
+                companies: filteredCompanies
+            });
+        }
+
     }
 
     selectCandidate = (candidate) => {
-        console.log(candidate);
 
         this.setState({
-            newReport: candidate
+            newReport: candidate,
+            isSelected: true
+        });
+    }
+
+    selectCompany = (company) => {
+        const newReport = this.state.newReport;
+        newReport.companyId = company.companyId;
+        newReport.companyName = company.companyName;
+
+        this.setState({
+            newReport,
+            isSelected: true
         });
     }
 
     nextStep = () => {
 
-        let newReport = this.state.newReport;
+        let step = this.state.step;
 
-        if (newReport.hasOwnProperty("name")) {
-
+        if (this.state.isSelected) {
+            ++step
             this.setState({
-                step: ++this.state.step
+                step,
+                isSelected: false
             });
         }
 
+    }
 
+
+    backStep = () => {
+
+        let step = this.state.step;
+
+        --step;
+        this.setState({
+            step,
+        });
+
+        let newReport = this.state.newReport;
+
+        if (step === 1) {
+
+            newReport.candidateName = "";
+            newReport.candidateId = "";
+
+            this.setState({
+                newReport
+            });
+        }
+
+        if (step === 1 || 2) {
+
+            newReport.companyName = "";
+            newReport.companyId = "";
+
+            this.setState({
+                newReport
+            });
+        }
+    }
+
+    submitReport = (createdReport) => {
+        const report = this.state.newReport;
+        const newReport = { ...report, ...createdReport }
+
+        dataService.submitReport(newReport, (response) => {
+            console.log(response);
+            if (response.status === 201) {
+                redirect.goTo("/");
+            }
+        });
     }
 
     componentWillMount() {
-        this.loadCandidates();
+        this.loadData();
     }
 
     render() {
 
+        const companies = this.state.companies;
+
+        const candidates = this.state.candidates;
+
+        const newReport = this.state.newReport;
+
+        let search;
         let currentStep;
         switch (this.state.step) {
             case 1:
+                search = <Search searchRequest={this.searchCandidates} />
                 currentStep = <SelectCandidate candidates={this.state.candidates}
                     selectCandidate={this.selectCandidate} />
                 break;
             case 2:
-                currentStep = <SelectCompany />
+                search = <Search searchRequest={this.searchCandidates} />
+                currentStep = <SelectCompany companies={companies} selectCompany={this.selectCompany} />
                 break;
             case 3:
-                currentStep = <FillReport />
+                search = "";
+                currentStep = <FillReport forwardReport={this.submitReport} />
                 break;
             default:
                 break;
         }
 
-        const candidates = this.state.candidates;
 
         return (
             <div className="row">
                 <div className="col-lg-3 col-md-4 col-sm-12">
-                    <SideDetails step={this.state.step} />
+                    <SideDetails step={this.state.step} newReport={newReport} />
                 </div>
-                <div className="col-lg-7 col-md-6 col-sm-12 form">
+                <div className="col-lg-9 col-md-8 col-sm-12 form">
+                    <div className="row">
+                        <div className="col-lg-9 col-md-8 col-sm-12">
+                            {search}
+                        </div>
+                        <div className="col-lg-3 col-md-4 col-sm-12 btnContainer">
+                            <button type="button" className={this.state.step === 1 ? "backBtn visibility" : "backBtn"}
+                                onClick={this.backStep}>Back</button>
+                            <button type="button" className={this.state.step === 3 ? "nextBtn visibility" : "nextBtn"}
+                                onClick={this.nextStep}>Next</button>
+                        </div>
+                    </div>
+
                     <div className="row">
                         <div className="col-12">
-                            <div className="row">
-                                <div className="col-10">
-                                    <Search searchRequest={this.searchCandidates} />
-                                </div>
-                                <div className="col-2">
-                                    <button type="button" onClick={this.nextStep}>Next</button>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
-                                </div>
-                            </div>
+                            {!candidates.length ? <h1 className="noMatch">Sorry, no matches!</h1> : currentStep}
                         </div>
                     </div>
                 </div>

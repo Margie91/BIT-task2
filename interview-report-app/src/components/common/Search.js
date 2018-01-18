@@ -20,7 +20,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <input id="search" type="text" placeholder="Search..."
+            <input className="search" type="text" placeholder="Search..."
             onChange={this.handleChange} value={this.state.searchTerm}/>
         )
     }

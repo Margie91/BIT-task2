@@ -21,6 +21,15 @@ class CommunicationService {
             .catch(error => errorHandler(error));
     }
 
+    postRequest(url, data, dataHandler, errorHandler) {
+
+        const requestUrl = `${BASE_URL}${url}`;
+
+        axios.post(requestUrl, data)
+            .then(response => dataHandler(response))
+            .catch((error) => errorHandler(error));
+
+    }
 }
 
 export const communicationService = new CommunicationService();
