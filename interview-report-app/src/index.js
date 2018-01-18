@@ -6,7 +6,7 @@ import './css/normalise.css';
 import './css/index.css';
 import './css/style.css';
 
-import App from './components/App';
+import App from './components/mainPage/App';
 
 ReactDOM.render(
     <HashRouter>

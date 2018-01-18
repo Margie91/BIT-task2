@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import ReportsPage from './ReportsPage';
-import SubmitReportPage from './SubmitReportPage';
+import SubmitReportPage from '../reports/SubmitReportPage';
 
 class MainPage extends React.Component {
     render() {

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from "prop-types";
+
 import CompanyComponent from './CompanyComponent';
 
 class SelectCompany extends React.Component {
@@ -19,8 +21,12 @@ class SelectCompany extends React.Component {
                         key={company.id} getCompany={this.handleCompany} />)}
                 </div>
             </div>
-        )
+        );
     }
 }
+
+SelectCompany.propTypes = {
+    companies: PropTypes.array
+};
 
 export default SelectCompany;

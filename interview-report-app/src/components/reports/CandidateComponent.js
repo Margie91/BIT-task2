@@ -1,5 +1,7 @@
 import React from 'react';
-import placeholder from '../assets/images/person-placeholder.jpg'
+import PropTypes from "prop-types";
+
+import placeholder from '../../assets/images/person-placeholder.jpg'
 
 class CandidateComponent extends React.Component {
   
@@ -45,5 +47,9 @@ class CandidateComponent extends React.Component {
         );
     }
 }
+
+CandidateComponent.propTypes = {
+    candidate: PropTypes.object
+};
 
 export default CandidateComponent;

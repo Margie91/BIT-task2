@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Header from './common/Header';
-import Footer from './common/Footer';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
 import MainPage from './MainPage';
 
 class App extends Component {

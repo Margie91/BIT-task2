@@ -1,9 +1,9 @@
 import React from 'react';
-import { dataService } from '../service/dataService';
-import { redirect } from '../service/redirect';
+import { dataService } from '../../service/dataService';
+import { redirect } from '../../service/redirect';
 
 import SideDetails from './SideDetails';
-import Search from './common/Search';
+import Search from './../common/Search';
 import SelectCandidate from './SelectCandidate';
 import SelectCompany from './SelectCompany';
 import FillReport from './FillReport';

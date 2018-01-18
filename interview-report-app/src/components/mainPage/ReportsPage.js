@@ -1,9 +1,9 @@
 import React from 'react';
-import { dataService } from '../service/dataService';
+import { dataService } from '../../service/dataService';
 
-import Search from './common/Search';
-import ReportComponent from './ReportComponent';
-import Modal from './Modal';
+import Search from '../common/Search';
+import ReportComponent from '../reports/ReportComponent';
+import Modal from '../reports/Modal';
 
 class ReportsPage extends React.Component {
     constructor(props) {

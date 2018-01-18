@@ -1,9 +1,11 @@
 import React from 'react';
-import { formatDate } from '../assets/helpers';
-import { capitalizeFirstLetter } from '../assets/helpers';
+import PropTypes from "prop-types";
 
-import seeMore from '../assets/images/eye_icon.png';
-import deleteIcon from '../assets/images/delete.png';
+import { formatDate } from '../../assets/helpers';
+import { capitalizeFirstLetter } from '../../assets/helpers';
+
+import seeMore from '../../assets/images/eye_icon.png';
+import deleteIcon from '../../assets/images/delete.png';
 
 class ReportComponent extends React.Component {
     constructor(props) {
@@ -50,8 +52,12 @@ class ReportComponent extends React.Component {
                 onClick={this.deleteRequest} src={deleteIcon}/>
                 </div>
             </div>   
-        )
+        );
     }
 }
+
+ReportComponent.propTypes = {
+    report: PropTypes.object
+};
 
 export default ReportComponent;

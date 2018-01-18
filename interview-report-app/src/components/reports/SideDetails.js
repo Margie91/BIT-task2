@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const SideDetails = (props) => {
 
@@ -35,5 +36,11 @@ const SideDetails = (props) => {
             </aside>
         );
 }
+
+
+SideDetails.propTypes = {
+    step: PropTypes.number,
+    newReport: PropTypes.object
+};
 
 export default SideDetails;

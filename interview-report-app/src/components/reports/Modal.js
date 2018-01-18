@@ -1,6 +1,8 @@
 import React from 'react';
-import { formatDate } from '../assets/helpers';
-import { capitalizeFirstLetter } from '../assets/helpers';
+import PropTypes from "prop-types";
+
+import { formatDate } from '../../assets/helpers';
+import { capitalizeFirstLetter } from '../../assets/helpers';
 
 class Modal extends React.Component {
     constructor(props) {
@@ -70,8 +72,12 @@ class Modal extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
+
+Modal.propTypes = {
+    report: PropTypes.object
+};
 
 export default Modal;
