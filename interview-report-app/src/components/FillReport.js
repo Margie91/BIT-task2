@@ -1,4 +1,5 @@
 import React from 'react';
+import { getToday } from '../assets/helpers';
 
 class FillReport extends React.Component {
     constructor(props) {
@@ -17,28 +18,30 @@ class FillReport extends React.Component {
         let value = event.target.value;
         let name = event.target.name;
 
-
-
-        console.log(value, name);
-
         this.setState({
             [name]: value
         });
     }
 
     submitHandler = (event) => {
-
         event.preventDefault();
 
+        const newReport = { ...this.state }
+        const date = new Date(this.state.interviewDate);
+        newReport.interviewDate = date + "";
 
-        console.log(this.state);
+        this.props.forwardReport(newReport);
+
     }
 
     render() {
+
+        let today = getToday();
+
         return (
             <form className="row fillReport" onSubmit={this.submitHandler}>
                 <div className="col-lg-4 col-sm-12">
-                    <input type="date" name="interviewDate" value={this.state.interviewDate} onChange={this.handleChange} placeholder="Interview Date" />
+                    <input type="date" max={today} name="interviewDate" value={this.state.interviewDate} onChange={this.handleChange} placeholder="Interview Date" />
                 </div>
                 <div className="col-lg-4 col-sm-12">
                     <div className="input-group mb-3">
@@ -46,7 +49,7 @@ class FillReport extends React.Component {
                             <label className="input-group-text" htmlFor="inputGroupSelect01">Phase</label>
                         </div>
                         <select className="custom-select" name="phase" value={this.state.phase} onChange={this.handleChange} id="inputGroupSelect01">
-                            <option defaultValue>Choose...</option>
+                            <option defaultValue value="">Choose...</option>
                             <option value="cv">CV</option>
                             <option value="hr">HR</option>
                             <option value="tech">Tech</option>
@@ -60,7 +63,7 @@ class FillReport extends React.Component {
                             <label className="input-group-text" htmlFor="inputGroupSelect01">Status</label>
                         </div>
                         <select className="custom-select" name="status" value={this.state.status} onChange={this.handleChange} id="inputGroupSelect01">
-                            <option defaultValue>Choose...</option>
+                            <option defaultValue value="">Choose...</option>
                             <option value="passed">Passed</option>
                             <option value="declined">Declined</option>
                         </select>

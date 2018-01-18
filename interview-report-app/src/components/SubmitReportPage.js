@@ -1,11 +1,13 @@
 import React from 'react';
 import { dataService } from '../service/dataService';
+import { redirect } from '../service/redirect';
 
 import SideDetails from './SideDetails';
 import Search from './common/Search';
 import SelectCandidate from './SelectCandidate';
 import SelectCompany from './SelectCompany';
 import FillReport from './FillReport';
+
 
 class SubmitReportPage extends React.Component {
     constructor(props) {
@@ -20,8 +22,6 @@ class SubmitReportPage extends React.Component {
             isSelected: false,
             step: 1
         }
-
-
     }
 
     loadData = () => {
@@ -108,19 +108,8 @@ class SubmitReportPage extends React.Component {
             });
         }
 
-        if (step === 3) {
-            let newReport = this.state.newReport;
-            if (newReport.hasOwnProperty("note")) {
-                this.submitReport(newReport);
-            }
-        }
     }
 
-    submitReport = (newReport) => {
-        dataService.submitReport(newReport, (response) => {
-            console.log(response);
-        })
-    }
 
     backStep = () => {
 
@@ -154,6 +143,18 @@ class SubmitReportPage extends React.Component {
         }
     }
 
+    submitReport = (createdReport) => {
+        const report = this.state.newReport;
+        const newReport = { ...report, ...createdReport }
+
+        dataService.submitReport(newReport, (response) => {
+            console.log(response);
+            if (response.status === 201) {
+                redirect.goTo("/");
+            }
+        });
+    }
+
     componentWillMount() {
         this.loadData();
     }
@@ -180,7 +181,7 @@ class SubmitReportPage extends React.Component {
                 break;
             case 3:
                 search = "";
-                currentStep = <FillReport />
+                currentStep = <FillReport forwardReport={this.submitReport} />
                 break;
             default:
                 break;
@@ -201,7 +202,7 @@ class SubmitReportPage extends React.Component {
                             <button type="button" className={this.state.step === 1 ? "backBtn visibility" : "backBtn"}
                                 onClick={this.backStep}>Back</button>
                             <button type="button" className={this.state.step === 3 ? "nextBtn visibility" : "nextBtn"}
-                            onClick={this.nextStep}>Next</button>
+                                onClick={this.nextStep}>Next</button>
                         </div>
                     </div>
 

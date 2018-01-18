@@ -10,7 +10,7 @@ class CompanyComponent extends React.Component {
         const companyId = event.target.dataset.id;
         const selectededCompany = {
             "companyName": companyName,
-            "companyId": companyId
+            "companyId": parseFloat(companyId)
         }
 
         this.props.getCompany(selectededCompany);

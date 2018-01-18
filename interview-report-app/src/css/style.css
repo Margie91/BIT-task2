@@ -148,7 +148,7 @@ nav .navButtons a.navbar-brand.active {
   border: none;
   width: 2.5rem;
   margin: 5px 0 0 0;
-  filter: invert(50%);
+  filter: invert(70%);
   transition: all 0.3s ease-in-out;
 }
 
@@ -287,7 +287,7 @@ aside span {
 
 aside h4 {
   margin-bottom: 30px;
-  color: rgb(131, 131, 131);
+  color: rgb(155, 155, 155);
   font-size: 1.1em;
 }
 

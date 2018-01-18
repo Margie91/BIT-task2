@@ -80,7 +80,7 @@ class ReportsPage extends React.Component {
         return (
             <div className="row">
                 <div className="col-12">
-                    <Search searchReports={this.searchReports} />
+                    <Search searchRequest={this.searchReports} />
                 </div>
                 <div className="col-12">
                     {reports.length <= 0 ? <h1 className="noMatch">Sorry, no matches!</h1> : reports.map((report) => <ReportComponent
