@@ -47,8 +47,6 @@ class FillReport extends React.Component {
             this.props.forwardReport(newReport);
         }
 
-
-
     }
 
     render() {
