@@ -7,10 +7,10 @@ class Header extends React.Component {
 
     activeClass = () => {
 
-        if (window.location.hash === "#/reports") {
+        if (window.location.pathname === "/reports") {
             window.$(".reports").addClass("active");
             window.$(".create").removeClass("active");
-        } else if (window.location.hash === "#/submitreport") {
+        } else if (window.location.pathname === "/submitreport") {
             window.$(".reports").removeClass("active");
             window.$(".create").addClass("active");
         }

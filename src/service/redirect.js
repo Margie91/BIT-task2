@@ -2,7 +2,7 @@ class Redirect {
  
     goTo(path) {
 
-        window.location.assign(`#${path}`);
+        window.location.assign(`${path}`);
 
     }
 }
