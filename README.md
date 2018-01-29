@@ -8,7 +8,7 @@ A responsive administrative panel for HR web application, responsible for creati
     -   React.js
     -   RESTFul API
     -   Passing data through multiple layers, both ways
-	  -   Separation of concerns
+    -   Separation of concerns
     -   Stateful and Stateless components
     -   Routing and navigation
     -   Validation
