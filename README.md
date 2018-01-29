@@ -2,6 +2,7 @@
 
 A responsive administrative panel for HR web application, responsible for creating/modifying/deleting candidate interview reports.
 
+DEMO: [Reports Administration](http://reports-admin.surge.sh)
 
 # Showcasing 
 
